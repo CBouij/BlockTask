@@ -194,11 +194,7 @@ function App() {
         <div className="task-actions">
           <button
             className={`btn btn-sm ${task.completed ? 'btn-success' : 'btn-outline-success'}`}
-            onClick={() => {
-              if(task.status !== 2) {
-                toggleTaskCompleted(task.id)}
-              }
-            }
+            onClick={() => toggleTaskCompleted(task.id)}
           >
             {task.completed ? '✓' : '○'}
           </button>
