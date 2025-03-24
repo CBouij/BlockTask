@@ -66,7 +66,7 @@ function App() {
   const updateTaskStatus = async (id, newStatus) => {
     if (contract) {
       try {
-        const tx = await contract.updateTaskStatus(id, newStatus);
+        const tx = await contract.updateTaskStatus(id, Number(newStatus));
         await tx.wait();
         setTasks(tasks.map(task =>
           task.id === id
@@ -119,11 +119,31 @@ function App() {
       }
     };
 
+    const handleStatusClick = (e) => {
+      e.stopPropagation();
+      setIsDropdownOpen(!isDropdownOpen);
+    };
+
+    const handleClickOutside = (e) => {
+      if (!e.target.closest('.task-status')) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    useEffect(() => {
+      if (isDropdownOpen) {
+        document.addEventListener('click', handleClickOutside);
+        return () => {
+          document.removeEventListener('click', handleClickOutside);
+        };
+      }
+    }, [isDropdownOpen]);
+
     return (
       <div className={`task-card ${task.status === 2 ? 'completed' : ''} ${task.status === 1 ? 'in-progress' : ''}`}>
         <div className="task-content">{task.content}</div>
         <div className="task-status mb-2 dropdown">
-          <div onClick={() => setIsDropdownOpen(!isDropdownOpen)} style={{ cursor: 'pointer' }}>
+          <div onClick={handleStatusClick} style={{ cursor: 'pointer' }}>
             {getStatusLabel(task.status)}
           </div>
           {isDropdownOpen && (
