@@ -14,6 +14,37 @@
         },
         {
           "indexed": false,
+          "internalType": "string",
+          "name": "content",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "bool",
+          "name": "completed",
+          "type": "bool"
+        },
+        {
+          "indexed": false,
+          "internalType": "enum TodoList.Status",
+          "name": "status",
+          "type": "uint8"
+        }
+      ],
+      "name": "TaskCreated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
           "internalType": "bool",
           "name": "completed",
           "type": "bool"
@@ -33,18 +64,12 @@
         },
         {
           "indexed": false,
-          "internalType": "string",
-          "name": "content",
-          "type": "string"
-        },
-        {
-          "indexed": false,
-          "internalType": "bool",
-          "name": "completed",
-          "type": "bool"
+          "internalType": "enum TodoList.Status",
+          "name": "status",
+          "type": "uint8"
         }
       ],
-      "name": "TaskCreated",
+      "name": "TaskStatusUpdated",
       "type": "event"
     },
     {
@@ -97,6 +122,11 @@
           "internalType": "bool",
           "name": "completed",
           "type": "bool"
+        },
+        {
+          "internalType": "enum TodoList.Status",
+          "name": "status",
+          "type": "uint8"
         }
       ],
       "stateMutability": "view",
@@ -111,6 +141,24 @@
         }
       ],
       "name": "toggleTaskCompleted",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "enum TodoList.Status",
+          "name": "_status",
+          "type": "uint8"
+        }
+      ],
+      "name": "updateTaskStatus",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
