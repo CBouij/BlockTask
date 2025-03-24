@@ -11,3 +11,26 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.card-img-top {
+  height: auto;
+  width: 25%;
+}
+
+/* CSS for hover effect */
+.btn:hover i {
+  animation: beat 1s infinite;
+}
+
+/* Define the beat animation */
+@keyframes beat {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
