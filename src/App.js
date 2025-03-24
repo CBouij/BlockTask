@@ -151,8 +151,12 @@ function App() {
               <button 
                 className="dropdown-item" 
                 onClick={() => {
-                  updateTaskStatus(task.id, 0);
-                  setIsDropdownOpen(false);
+                  if(task.status !== 0) {
+                    updateTaskStatus(task.id, 0);
+                    setIsDropdownOpen(false);
+                  } else {
+                    setIsDropdownOpen(false);
+                  }
                 }}
               >
                 À faire
@@ -160,8 +164,13 @@ function App() {
               <button 
                 className="dropdown-item" 
                 onClick={() => {
-                  updateTaskStatus(task.id, 1);
-                  setIsDropdownOpen(false);
+                  //on vérifie d'abord que le statut est différent de celui actuel
+                  if(task.status !== 1) {
+                    updateTaskStatus(task.id, 1);
+                    setIsDropdownOpen(false);
+                  } else {
+                    setIsDropdownOpen(false);
+                  }
                 }}
               >
                 En cours
@@ -169,8 +178,12 @@ function App() {
               <button 
                 className="dropdown-item" 
                 onClick={() => {
-                  updateTaskStatus(task.id, 2);
-                  setIsDropdownOpen(false);
+                  if(task.status !== 2) {
+                    updateTaskStatus(task.id, 2);
+                    setIsDropdownOpen(false);
+                  } else {
+                    setIsDropdownOpen(false);
+                  }
                 }}
               >
                 Terminé
@@ -181,7 +194,11 @@ function App() {
         <div className="task-actions">
           <button
             className={`btn btn-sm ${task.completed ? 'btn-success' : 'btn-outline-success'}`}
-            onClick={() => toggleTaskCompleted(task.id)}
+            onClick={() => {
+              if(task.status !== 2) {
+                toggleTaskCompleted(task.id)}
+              }
+            }
           >
             {task.completed ? '✓' : '○'}
           </button>
