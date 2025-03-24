@@ -21,6 +21,7 @@ Connectez vous au réseau localhost:
 | --- | --- | --- 
 | `localhost:8545` | `1337` | `ETH` 
 
+Connectez le compte "Account 2"
 Dans un second terminal:
 ```bash
 npm i 

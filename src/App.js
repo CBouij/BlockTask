@@ -64,13 +64,18 @@ function App() {
     <div style={{ textAlign: "center", padding: "20px" }}>
       <h1>Blockchain To-Do List</h1>
       <p>Connecté avec : {account}</p>
-      <input
-        type="text"
-        value={taskContent}
-        onChange={(e) => setTaskContent(e.target.value)}
-        placeholder="Nouvelle tâche..."
-      />
-      <button onClick={createTask}>Ajouter</button>
+      <form>
+        <div class="input-group">
+          <input
+            type="text"
+            value={taskContent}
+            onChange={(e) => setTaskContent(e.target.value)}
+            placeholder="Nouvelle tâche..."
+            class="form-control"
+          />
+          <button onClick={createTask} class="btn btn-success">Ajouter</button>
+        </div>
+      </form>
       <ul>
         {tasks.map((task) => (
           <li key={task.id}>
