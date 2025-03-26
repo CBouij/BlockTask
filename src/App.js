@@ -15,11 +15,14 @@ function App() {
   useEffect(() => {
     async function loadBlockchainData() {
       if (window.ethereum) {
-        const provider = new ethers.BrowserProvider(window.ethereum);
-        const signer = await provider.getSigner();
-        const todoContract = new ethers.Contract(contractAddress, contractABI, signer);
-        
-        setContract(todoContract);
+        try {
+          const provider = new ethers.BrowserProvider(window.ethereum);
+          const signer = await provider.getSigner();
+          const todoContract = new ethers.Contract(contractAddress, contractABI, signer); 
+          setContract(todoContract);
+        } catch (e) {
+          console.error("MetaMask not connected or not unlocked:", e);
+        }
         try {
           const tasksCount = Number(await todoContract.taskCount());
           let loadedTasks = [];
